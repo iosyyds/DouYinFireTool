@@ -13,7 +13,7 @@
 // @grant        GM_getResourceText
 // @grant        GM_addStyle
 // @homepage   				https://github.com/iosyyds/DouYinFireTool
-// @source     				https://raw.githubusercontent.com/iosyyds/DouYinFireTool/main/抖音火花助手.user.js
+// @source     				https://raw.githubusercontent.com/iosyyds/DouYinFireTool/main/抖音火花助手.js
 // ==/UserScript==
 
 (function() {
