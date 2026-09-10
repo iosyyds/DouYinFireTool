@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔥 抖音火花助手 - 安装页</title>
+<meta name="description" content="抖音火花助手 - 自动续抖音火花的油猴用户脚本，支持个性化模板、定时发送、宏系统。">
+<style>
+  :root {
+    --bg: #0f1115;
+    --card: #171a21;
+    --text: #e8eaf0;
+    --muted: #9aa0ae;
+    --accent: #fe2c55;
+    --accent2: #ff8a3d;
+    --border: #262b36;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 20px 64px;
+  }
+  .container { width: 100%; max-width: 720px; }
+  .hero {
+    text-align: center;
+    padding: 40px 24px;
+    border-radius: 20px;
+    background: linear-gradient(160deg, #1c1418 0%, #171a21 55%, #13161d 100%);
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 40px rgba(0,0,0,.35);
+  }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: #ffd9a8;
+    background: rgba(254, 140, 61, .12);
+    border: 1px solid rgba(255, 138, 61, .35);
+    margin-bottom: 16px;
+    letter-spacing: .5px;
+  }
+  h1 {
+    font-size: 34px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ff8a3d, #fe2c55);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+  .desc { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
+  .install-btn {
+    display: inline-block;
+    padding: 14px 42px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(90deg, #fe2c55, #ff6b3d);
+    box-shadow: 0 8px 24px rgba(254, 44, 85, .35);
+    transition: transform .15s ease, box-shadow .15s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .install-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(254, 44, 85, .45); }
+  .install-btn:active { transform: translateY(0); }
+  .backup { margin-top: 16px; font-size: 13px; color: var(--muted); }
+  .backup a { color: #ffb27d; text-decoration: none; word-break: break-all; }
+  .backup a:hover { text-decoration: underline; }
+  .section {
+    margin-top: 24px;
+    padding: 24px;
+    border-radius: 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+  .section h2 { font-size: 17px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .steps { list-style: none; counter-reset: step; }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 8px 0 8px 40px;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 10px;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #fe2c55, #ff8a3d);
+  }
+  .tip { font-size: 13px; color: var(--muted); line-height: 1.7; margin-top: 10px; padding: 12px 14px; border-radius: 10px; background: rgba(255,138,61,.06); border: 1px solid rgba(255,138,61,.18); }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .features span { font-size: 13.5px; color: var(--text); padding: 10px 12px; border-radius: 10px; background: rgba(255,255,255,.03); border: 1px solid var(--border); }
+  .features span::before { content: "·"; color: #fe2c55; font-weight: 900; margin-right: 6px; }
+  footer { margin-top: 28px; font-size: 12px; color: #5c6270; text-align: center; line-height: 1.8; }
+  @media (max-width: 560px) {
+    .features { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+    .hero { padding: 32px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="badge">Tampermonkey / ScriptCat 用户脚本 · v1.0.5</span>
+    <h1>🔥 抖音火花助手</h1>
+    <p class="desc">自动续抖音火花：自动抓取聊天列表、为每个对象设置个性化模板、支持定时发送与宏系统，让你的火花不再断掉。</p>
+    <a class="install-btn" href="https://cdn.jsdelivr.net/gh/iosyyds/DouYinFireTool@main/抖音火花助手.user.js">一键安装脚本</a>
+    <div class="backup">
+      备用直链：<a href="https://raw.githubusercontent.com/iosyyds/DouYinFireTool/main/抖音火花助手.user.js">GitHub 直链</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📥 安装步骤</h2>
+    <ol class="steps">
+      <li>安装 <a href="https://www.tampermonkey.net/" style="color:#ffb27d">Tampermonkey</a> 浏览器扩展（或 <a href="https://scriptcat.org/" style="color:#ffb27d">ScriptCat</a>）</li>
+      <li>点击上方「一键安装脚本」按钮，在弹出的安装确认框中点击「安装」</li>
+      <li>登录抖音创作者后台，进入聊天页面，脚本将自动运行</li>
+      <li>点击页面上的「续火目标管理」面板，添加续火花对象并设置模板</li>
+    </ol>
+    <div class="tip">💡 发送消息间隔建议保持 3 秒以上，避免被平台限制。</div>
+  </div>
+
+  <div class="section">
+    <h2>⚡ 功能特性</h2>
+    <div class="features">
+      <span>自动抓取聊天列表</span>
+      <span>个性化消息模板</span>
+      <span>变量 $date / $targetName / $sinceDate()</span>
+      <span>宏管理系统</span>
+      <span>每日定时自动发送</span>
+      <span>Monaco 代码编辑器</span>
+      <span>批量发送与一键全选</span>
+      <span>亮 / 暗主题切换</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📦 项目仓库</h2>
+    <p style="font-size:14px;color:var(--muted);line-height:1.8">
+      源码与完整文档见：<a href="https://github.com/iosyyds/DouYinFireTool" style="color:#ffb27d">github.com/iosyyds/DouYinFireTool</a><br>
+      项目仅供学习交流使用，使用本脚本所产生的任何后果由使用者自行承担。
+    </p>
+  </div>
+
+  <footer>
+    🔥 抖音火花助手 · MIT License · 仅供学习交流
+  </footer>
+</div>
+</body>
+</html>
