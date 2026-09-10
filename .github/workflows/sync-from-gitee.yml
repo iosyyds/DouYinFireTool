@@ -1,0 +1,49 @@
+name: Sync script from Gitee
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download source from Gitee
+        run: |
+          curl -fsSL --retry 3 -o /tmp/src.js \
+            "https://gitee.com/WorldMargin/DouYinFireTool/raw/main/%E6%8A%96%E9%9F%B3%E7%81%AB%E8%8A%B1%E5%8A%A9%E6%89%8B.js"
+          test -s /tmp/src.js
+          echo "downloaded bytes: $(wc -c < /tmp/src.js)"
+      - name: Patch metadata and write script files
+        run: |
+          python3 - <<'PY'
+          import io
+          src = io.open('/tmp/src.js', encoding='utf-8').read()
+          old_home = 'https://github.com/WorldMargin2/DouYinFireTool'
+          new_home = 'https://github.com/iosyyds/DouYinFireTool'
+          old_src = 'https://raw.githubusercontent.com/WorldMargin2/DouYinFireTool/refs/heads/main/\u6296\u97f3\u706b\u82b1\u52a9\u624b.js'
+          new_src = 'https://raw.githubusercontent.com/iosyyds/DouYinFireTool/main/\u6296\u97f3\u706b\u82b1\u52a9\u624b.js'
+          js = src.replace(old_home, new_home).replace(old_src, new_src)
+          io.open('\u6296\u97f3\u706b\u82b1\u52a9\u624b.js', 'w', encoding='utf-8').write(js)
+          usr = js.replace('main/\u6296\u97f3\u706b\u82b1\u52a9\u624b.js', 'main/\u6296\u97f3\u706b\u82b1\u52a9\u624b.user.js')
+          io.open('\u6296\u97f3\u706b\u82b1\u52a9\u624b.user.js', 'w', encoding='utf-8').write(usr)
+          print('js bytes:', len(js.encode('utf-8')))
+          print('user.js bytes:', len(usr.encode('utf-8')))
+          PY
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "no changes"
+          else
+            git commit -m "Sync \u6296\u97f3\u706b\u82b1\u52a9\u624b full source from Gitee"
+            git push
+          fi
